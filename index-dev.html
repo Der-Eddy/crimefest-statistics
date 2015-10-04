@@ -33,6 +33,11 @@
                         Refreshing in <span style="color: violet;" id="countdown">15</span> seconds.
                       </div>
                     </div>
+                    <div class="ui warning message">
+                      <div class="content">
+                        Dallas Fourth Challenge is not tracked yet, I will fix that ASAP. Check <a href="http://steamcharts.com/app/218620">SteamCharts.com</a> instead for the moment.
+                      </div>
+                    </div>
                     <div class="ui icon blue message" id="loadingMessage">
                       <i class="notched circle loading icon"></i>
                       <div class="content">
@@ -57,6 +62,38 @@
 
         <div class="ui four column centered grid">
             <div class="five column centered row">
+                <div class="ui horizontal inverted divider">
+                  <p><i class="ticket icon"></i>Challenge 4</p>
+                </div>
+                <div class="column">
+                    <h3 class="ui center aligned header">Chains</h4>
+                    <div class="circle ChainsFourth"></div>
+                    <span id="ChainsFourthNumber">0</span> / 50,000
+                    <h4 class="ui center aligned header">Unbox Day!</h4>
+                    Complete 50,000 heists with a vault during the Road to Crimefest event.
+                </div>
+                <div class="column">
+                  <h3 class="ui center aligned header">Clover</h4>
+                  <div class="circle CloverFourth"></div>
+                  <span id="CloverFourthNumber">0</span> / 30,000
+                  <h4 class="ui center aligned header">Dark Arts</h4>
+                  Complete the Framing Frame heist 30,000 times during the Road to Crimefest event.
+                </div>
+                <div class="column">
+                  <h3 class="ui center aligned header">Dallas</h4>
+                  <div class="circle DallasFourth"></div>
+                  <span id="DallasFourthNumber">?</span> / 30,000
+                  <h4 class="ui center aligned header">Crime.net Overload!</h4>
+                  Reach a peak of 30,000 players playing PAYDAY 2 online at the same time during the Road to Crimefest event. Check <a href="http://steamcharts.com/app/218620">SteamCharts.com</a> for that.
+                </div>
+                <div class="column">
+                  <h3 class="ui center aligned header">Houston</h4>
+                  <div class="circle HoustonFourth"></div>
+                  <span id="HoustonFourthNumber">0</span> / 4,000.000
+                  <h4 class="ui center aligned header">Don't Tase Me Bro</h4>
+                  Kill 4,000,000 Tasers during the Road to Crimefest event.
+                </div>
+
                 <div class="ui horizontal inverted divider">
                   <p><i class="ticket icon"></i>Challenge 3</p>
                 </div>
@@ -552,10 +589,128 @@
               ctx.restore();
             });
 
+            var ChainsFourth = $('.ChainsFourth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            ChainsFourth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
+            var DallasFourth = $('.DallasFourth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            DallasFourth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
+            var CloverFourth = $('.CloverFourth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            CloverFourth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
+            var HoustonFourth = $('.HoustonFourth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            HoustonFourth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
             function refresh(){
               $("#warningMessage").fadeOut();
               $.getJSON( "apiv2.php", function( data ) {
                   $("#loadingMessage").fadeOut();
+
+                  var ChainsFourth = parseInt(data.response.globalstats.crimefest_challenge_chains_4.total);
+                  $("#ChainsFourthNumber").text(ChainsFourth.toLocaleString());
+                  $('.ChainsFourth').circleProgress('value', ChainsFourth / 50000);
+                  var CloverFourth = parseInt(data.response.globalstats.crimefest_challenge_clover_4.total);
+                  $("#CloverFourthNumber").text(CloverFourth.toLocaleString());
+                  $('.CloverFourth').circleProgress('value', CloverFourth / 30000);
+                  var HoustonFourth = parseInt(data.response.globalstats.crimefest_challenge_houston_4.total);
+                  $("#HoustonFourthNumber").text(HoustonFourth.toLocaleString());
+                  $('.HoustonFourth').circleProgress('value', HoustonFourth / 4000000);
 
                   var ChainsThird = parseInt(data.response.globalstats.crimefest_challenge_chains_3.total);
                   $("#ChainsThirdNumber").text(ChainsThird.toLocaleString());
