@@ -29,7 +29,7 @@
                 <div class="column" id="left">
                     <div class="ui large violet message">
                       <div class="content">
-                        Refreshing in <span style="color: violet;" id="countdown">30</span> seconds.
+                        Refreshing in <span style="color: violet;" id="countdown">15</span> seconds.
                       </div>
                     </div>
                     <div class="ui icon blue message" id="loadingMessage">
@@ -163,8 +163,8 @@
                   <a href="https://www.reddit.com/user/Der-Eddy/" class="item"><i class="reddit square icon"></i> /u/Der-Eddy</a>
                   <a href="http://steamcommunity.com/id/der-eddy/" class="item"><i class="steam square icon"></i> Der-Eddy</a>
                   <a href="https://github.com/Der-Eddy/crimefest-statistics" class="item"><i class="github square icon"></i> Github Repository</a>
-                  <a href="#" class="item" onclick="$('.ui.modal').modal('show');"><i class="info icon"></i> Contact</a>
-                  <a href="#" class="item" onclick="$('.ui.modal').modal('show');"><i class="info icon"></i> Do-not-Track</a>
+                  <a href="#" class="item" onclick="$('#imprint').modal('show');"><i class="info icon"></i> Contact</a>
+                  <a href="#" class="item" onclick="$('#imprint').modal('show');"><i class="info icon"></i> Do-not-Track</a>
                 </div>
               </div>
               <div class="three wide column">
@@ -180,13 +180,13 @@
               <div class="seven wide column">
                 <h4 class="ui inverted header">Other cool informations</h4>
                 <p>Consider visiting <a href="https://www.reddit.com/r/paydaytheheist">/r/paydaytheheist</a> for cool discussions, news and other stuff for PayDay2!</p>
-                <br><br><p>Poor Wolf :(</p>
+                <br><p>This site is <a href="https://github.com/Der-Eddy/crimefest-statistics">Open-Sourced</a> with the <a href="#" onclick="$('#license').modal('show');">MIT License</a></p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="ui modal">
+        <div class="ui modal" id="imprint">
           <i class="close icon"></i>
           <div class="header">
             Imprint & Do-not-Track
@@ -206,6 +206,22 @@
               <br><br>
               <p>I'm using <a href="http://piwik.org/">Piwik</a> to get some informations to optimize my traffic load.</p>
               <iframe style="border: 0; height: 200px; width: 600px;" src="http://crimefest.eddydev.de/piwik/index.php?module=CoreAdminHome&action=optOut&language=de"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui small modal" id ="license">
+          <i class="close icon"></i>
+          <div class="header">
+            License
+          </div>
+          <div class="content">
+            <div class="description">
+              <p>The MIT License (MIT)</p><br>
+              <p>Copyright (c) 2015</p><br>
+              <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sellcopies of the Software, and to permit persons to whom the Software isfurnished to do so, subject to the following conditions:</p><br>
+              <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p><br>
+              <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
             </div>
           </div>
         </div>
@@ -571,7 +587,7 @@
 
             refresh();
 
-            var time = 30;
+            var time = 15;
             setInterval( function() {
         
                 time--;
@@ -580,7 +596,7 @@
                 
                 if (time === 0) {
                     
-                    time = 30;
+                    time = 15;
                     refresh();
                 }    
                 
