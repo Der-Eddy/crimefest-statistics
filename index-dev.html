@@ -20,6 +20,8 @@
             p {color: #ffffff;}
             addr {color: rgba(0, 0, 0, 0.87);}
             .modal p {color: rgba(0, 0, 0, 0.87);}
+            .ui.statistic + .ui.statistic {margin: 0px 0px 0px 1px!important;}
+            .ui.statistic {display: inline;}
         </style>
     </head>
     <body>
@@ -33,9 +35,13 @@
                         Refreshing in <span style="color: violet;" id="countdown">15</span> seconds.
                       </div>
                     </div>
-                    <div class="ui warning message">
+                    <div class="ui icon warning message" id="devMessage">
+                      <i class="warning icon"></i>
                       <div class="content">
-                        Dallas Fourth Challenge is not tracked yet, I will fix that ASAP. Check <a href="http://steamcharts.com/app/218620">SteamCharts.com</a> instead for the moment.
+                        <div class="header">
+                          Developer site
+                        </div>
+                        This is a non-modified, non-stable and experimental site. Please visit the <a href="index.html">Main Site</a> if you aren't a developer.
                       </div>
                     </div>
                     <div class="ui icon blue message" id="loadingMessage">
@@ -47,18 +53,33 @@
                         Fetching Steam data...
                       </div>
                     </div>
-                    <div class="ui icon error hidden message" id="warningMessage">
+                    <div class="ui icon error message" id="warningMessage">
                       <i class="warning icon"></i>
                       <div class="content">
                         <div class="header">
-                          An error occured
+                          An error occured (SteamGlobalStats)
                         </div>
                         Failed fetching Steam Web API data. Check <a href="https://steamstat.us/" target_"_blank">Steamstat.us</a> if it's down.
+                      </div>
+                    </div>
+                    <div class="ui icon error message" id="warningCurrentMessage">
+                      <i class="warning icon"></i>
+                      <div class="content">
+                        <div class="header">
+                          An error occured (Player_Count)
+                        </div>
+                        Failed fetching current PayDay2 player count via Steam Web API. Check <a href="https://steamstat.us/" target_"_blank">Steamstat.us</a> if it's down.
                       </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+          $("#devMessage").hide();
+          $("#warningMessage").hide();
+          $("#warningCurrentMessage").hide();
+        </script>
 
         <div class="ui four column centered grid">
             <div class="five column centered row">
@@ -82,9 +103,9 @@
                 <div class="column">
                   <h3 class="ui center aligned header">Dallas</h4>
                   <div class="circle DallasFourth"></div>
-                  <span id="DallasFourthNumber">?</span> / 30,000
+                  <span id="DallasFourthNumber">0</span> / 30,000
                   <h4 class="ui center aligned header">Crime.net Overload!</h4>
-                  Reach a peak of 30,000 players playing PAYDAY 2 online at the same time during the Road to Crimefest event. Check <a href="http://steamcharts.com/app/218620">SteamCharts.com</a> for that.
+                  Reach a peak of 30,000 players playing PAYDAY 2 online at the same time during the Road to Crimefest event.
                 </div>
                 <div class="column">
                   <h3 class="ui center aligned header">Houston</h4>
@@ -215,10 +236,29 @@
                   <a href="https://www.cloudflare.com/" class="item"><i class="soundcloud icon"></i> Cloudflare</a>
                 </div>
               </div>
-              <div class="seven wide column">
+              <div class="five wide column">
                 <h4 class="ui inverted header">Other cool informations</h4>
                 <p>Consider visiting <a href="https://www.reddit.com/r/paydaytheheist">/r/paydaytheheist</a> for cool discussions, news and other stuff for PayDay2!</p>
                 <br><p>This site is <a href="https://github.com/Der-Eddy/crimefest-statistics">Open-Sourced</a> with the <a href="#" onclick="$('#license').modal('show');">MIT License</a></p>
+              </div>
+              <div class="four wide column">
+                <h4 class="ui inverted header">Other statistics</h4>
+                <div class="ui tiny inverted statistic">
+                  <div class="value" id="currentPlayer">
+                    0
+                  </div>
+                  <div class="label">
+                    Current PayDay2 Player
+                  </div>
+                </div>
+                <div class="ui tiny inverted statistic" data-content="During Crimefest" id="maxPlayerStatistic">
+                  <div class="value" id="maxPlayer">
+                    0
+                  </div>
+                  <div class="label">
+                    Max PayDay2 Player
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -699,6 +739,7 @@
 
             function refresh(){
               $("#warningMessage").fadeOut();
+              $("#warningCurrentMessage").fadeOut();
               $.getJSON( "apiv2.php", function( data ) {
                   $("#loadingMessage").fadeOut();
 
@@ -751,6 +792,21 @@
                   $("#HoustonFirstNumber").text(HoustonFirst.toLocaleString());
                   $('.HoustonFirst').circleProgress('value', HoustonFirst / 120000);
               }).error(function() { $("#loadingMessage").fadeOut(); $("#warningMessage").fadeIn(); });
+
+              $.getJSON( "currentPlayer.json", function( data ) {
+                  var currentPlayer = parseInt(data.response.player_count);
+                  $("#currentPlayer").text(currentPlayer.toLocaleString());
+                  if (currentPlayer == 0){
+                    $("#warningCurrentMessage").fadeIn();
+                  }
+              }).error(function() { $("#loadingMessage").fadeOut(); $("#warningCurrentMessage").fadeIn(); });
+
+              $.getJSON( "maxPlayer.json", function( data ) {
+                  var DallasFourth = parseInt(data.response.player_count);
+                  $("#DallasFourthNumber").text(DallasFourth.toLocaleString());
+                  $('.DallasFourth').circleProgress('value', DallasFourth / 30000);
+                  $("#maxPlayer").text(DallasFourth.toLocaleString());
+              }).error(function() { $("#loadingMessage").fadeOut();});
             }
 
             refresh();
@@ -770,6 +826,15 @@
                 
                 
             }, 1000 );
+
+            $('#maxPlayerStatistic').popup();
+
+            var url = window.location.pathname;
+            var filename = url.substring(url.lastIndexOf('/')+1);
+            if (filename == "index-dev.html"){
+              console.log("You are visiting the developer site of YACSS");
+              $("#devMessage").show();
+            }
         
         <!-- Piwik -->
           var _paq = _paq || [];
