@@ -17,7 +17,7 @@ Screenshoots
 
 ![Circle Progressbars](http://i.imgur.com/3Mbbh7L.png)
 
-[Full Site Screenshot](http://i.imgur.com/Kj0SB3p.png)
+[Full Site Screenshot](http://i.imgur.com/Kj0SB3p.png)  
 [Mobile Site Screenshot](http://i.imgur.com/6WEsz5e.jpg)
 
 ToDo
