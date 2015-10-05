@@ -22,13 +22,14 @@
             .modal p {color: rgba(0, 0, 0, 0.87);}
             .ui.statistic + .ui.statistic {margin: 0px 0px 0px 1px!important;}
             .ui.statistic {display: inline;}
+            canvas {max-width: 100%;} .column:not(#left) {word-wrap: break-word;}
         </style>
     </head>
     <body>
         <h1 class="ui center aligned header">Yet Another <a href="http://www.overkillsoftware.com/games/roadtocrimefest/" target="_blank">Crimefest</a> Statistics Site</h2>
 
-        <div class="ui two column centered grid">
-            <div class="three column centered row">
+        <div class="ui one column centered stackable grid container">
+            <div class="two column centered row">
                 <div class="column" id="left">
                     <div class="ui large violet message">
                       <div class="content">
@@ -41,7 +42,16 @@
                         <div class="header">
                           Developer site
                         </div>
-                        This is a non-modified, non-stable and experimental site. Please visit the <a href="index.html">Main Site</a> if you aren't a developer.
+                        This is a non-minified, non-stable and experimental site. Please visit the <a href="index.html">Main Site</a> if you aren't a developer.
+                      </div>
+                    </div>
+                    <div class="ui icon info message">
+                      <i class="info icon"></i>
+                      <div class="content">
+                        <div class="header">
+                          Mobile Support
+                        </div>
+                        YACSS got mobile support! Just visit the site with your mobile/tablet device!
                       </div>
                     </div>
                     <div class="ui icon blue message" id="loadingMessage">
@@ -54,7 +64,7 @@
                       </div>
                     </div>
                     <div class="ui icon error message" id="warningMessage">
-                      <i class="warning icon"></i>
+                      <i class="warning sign icon"></i>
                       <div class="content">
                         <div class="header">
                           An error occured (SteamGlobalStats)
@@ -63,7 +73,7 @@
                       </div>
                     </div>
                     <div class="ui icon error message" id="warningCurrentMessage">
-                      <i class="warning icon"></i>
+                      <i class="warning sign icon"></i>
                       <div class="content">
                         <div class="header">
                           An error occured (Player_Count)
@@ -72,16 +82,31 @@
                       </div>
                     </div>
                 </div>
+
+                <div class="mobile only column" id="left">
+                    <div class="ui icon info message">
+                      <i class="info icon"></i>
+                      <div class="content">
+                        You are visiting the mobile site.
+                      </div>
+                    </div>
+                  </div>
             </div>
         </div>
 
         <script>
-          $("#devMessage").hide();
           $("#warningMessage").hide();
           $("#warningCurrentMessage").hide();
+
+          var url = window.location.pathname;
+          var filename = url.substring(url.lastIndexOf('/')+1);
+          if (filename != "index-dev.html"){
+            console.log("You are visiting the developer site of YACSS");
+            $("#devMessage").hide();
+          }
         </script>
 
-        <div class="ui four column centered grid">
+        <div class="ui two column centered stackable grid">
             <div class="five column centered row">
                 <div class="ui horizontal inverted divider">
                   <p><i class="ticket icon"></i>Challenge 4</p>
@@ -222,6 +247,7 @@
                   <a href="https://www.reddit.com/user/Der-Eddy/" class="item"><i class="reddit square icon"></i> /u/Der-Eddy</a>
                   <a href="http://steamcommunity.com/id/der-eddy/" class="item"><i class="steam square icon"></i> Der-Eddy</a>
                   <a href="https://github.com/Der-Eddy/crimefest-statistics" class="item"><i class="github square icon"></i> Github Repository</a>
+                  <a href="https://www.reddit.com/r/paydaytheheist/comments/3net30/yet_another_crimefest_statistics_site_link_inside/" class="item"><i class="reddit square icon"></i> Reddit Topic</a>
                   <a href="#" class="item" onclick="$('#imprint').modal('show');"><i class="info icon"></i> Contact</a>
                   <a href="#" class="item" onclick="$('#imprint').modal('show');"><i class="info icon"></i> Do-not-Track</a>
                 </div>
@@ -239,7 +265,7 @@
               <div class="five wide column">
                 <h4 class="ui inverted header">Other cool informations</h4>
                 <p>Consider visiting <a href="https://www.reddit.com/r/paydaytheheist">/r/paydaytheheist</a> for cool discussions, news and other stuff for PayDay2!</p>
-                <br><p>This site is <a href="https://github.com/Der-Eddy/crimefest-statistics">Open-Sourced</a> with the <a href="#" onclick="$('#license').modal('show');">MIT License</a></p>
+                <br><br><p>This site is <a href="https://github.com/Der-Eddy/crimefest-statistics">Open-Sourced</a> with the <a href="#" onclick="$('#license').modal('show');">MIT License</a></p>
               </div>
               <div class="four wide column">
                 <h4 class="ui inverted header">Other statistics</h4>
@@ -828,13 +854,6 @@
             }, 1000 );
 
             $('#maxPlayerStatistic').popup();
-
-            var url = window.location.pathname;
-            var filename = url.substring(url.lastIndexOf('/')+1);
-            if (filename == "index-dev.html"){
-              console.log("You are visiting the developer site of YACSS");
-              $("#devMessage").show();
-            }
         
         <!-- Piwik -->
           var _paq = _paq || [];
