@@ -109,6 +109,38 @@
         <div class="ui two column centered stackable grid">
             <div class="five column centered row">
                 <div class="ui horizontal inverted divider">
+                  <p><i class="ticket icon"></i>Challenge 5</p>
+                </div>
+                <div class="column">
+                    <h3 class="ui center aligned header">Chains</h4>
+                    <div class="circle ChainsFifth"></div>
+                    <span id="ChainsFifthNumber">0</span> / 20,000
+                    <h4 class="ui center aligned header">SevenThreeFiveFiveSixZeroEight</h4>
+                    Complete 20,000 GO Bank heists while using the CAR-4 Rifle or the AK Rifle during the Road to Crimefest event. 
+                </div>
+                <div class="column">
+                  <h3 class="ui center aligned header">Clover</h4>
+                  <div class="circle CloverFifth"></div>
+                  <span id="CloverFifthNumber">0</span> / 20,000
+                  <h4 class="ui center aligned header">Bearded Wisdom</h4>
+                  Help Vlad's brother in law escape 20,000 times on White Xmas during the Road to Crimefest event.
+                </div>
+                <div class="column">
+                  <h3 class="ui center aligned header">Dallas</h4>
+                  <div class="circle DallasFifth"></div>
+                  <span id="DallasFifthNumber">0</span> / 150,000
+                  <h4 class="ui center aligned header">Winters Came and Went</h4>
+                  Defeat Captain Winters' squadmembers 150,000 times during the Road to Crimefest event.
+                </div>
+                <div class="column">
+                  <h3 class="ui center aligned header">Houston</h4>
+                  <div class="circle HoustonFifth"></div>
+                  <span id="HoustonFifthNumber">0</span> / 250.000
+                  <h4 class="ui center aligned header">I looked, and behold, a white horse.</h4>
+                  Complete 250,000 heists on the Death Wish difficulty during the Road to Crimefest event
+                </div>
+
+                <div class="ui horizontal inverted divider">
                   <p><i class="ticket icon"></i>Challenge 4</p>
                 </div>
                 <div class="column">
@@ -496,7 +528,7 @@
                   fill = obj.arcFill;
 
               ctx.save();
-              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.font = s / 5.0 + "px sans-serif";
               ctx.textAlign = 'center';
               ctx.textBaseline = 'middle';
               ctx.fillStyle = fill;
@@ -763,11 +795,132 @@
               ctx.restore();
             });
 
+            var ChainsFifth = $('.ChainsFifth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            ChainsFifth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
+            var DallasFifth = $('.DallasFifth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            DallasFifth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
+            var CloverFifth = $('.CloverFifth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            CloverFifth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
+            var HoustonFifth = $('.HoustonFifth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            HoustonFifth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
             function refresh(){
               $("#warningMessage").fadeOut();
               $("#warningCurrentMessage").fadeOut();
               $.getJSON( "apiv2.php", function( data ) {
                   $("#loadingMessage").fadeOut();
+
+                  var ChainsFifth = parseInt(data.response.globalstats.crimefest_challenge_chains_5.total);
+                  $("#ChainsFifthNumber").text(ChainsFifth.toLocaleString());
+                  $('.ChainsFifth').circleProgress('value', ChainsFifth / 20000);
+                  var DallasFifth = parseInt(data.response.globalstats.crimefest_challenge_dallas_5.total);
+                  $("#DallasFifthNumber").text(DallasFifth.toLocaleString());
+                  $('.DallasFifth').circleProgress('value', DallasFifth / 150000);
+                  var CloverFifth = parseInt(data.response.globalstats.crimefest_challenge_clover_5.total);
+                  $("#CloverFifthNumber").text(CloverFifth.toLocaleString());
+                  $('.CloverFifth').circleProgress('value', CloverFifth / 20000);
+                  var HoustonFifth = parseInt(data.response.globalstats.crimefest_challenge_houston_5.total);
+                  $("#HoustonFifthNumber").text(HoustonFifth.toLocaleString());
+                  $('.HoustonFifth').circleProgress('value', HoustonFifth / 250000);
 
                   var ChainsFourth = parseInt(data.response.globalstats.crimefest_challenge_chains_4.total);
                   $("#ChainsFourthNumber").text(ChainsFourth.toLocaleString());
