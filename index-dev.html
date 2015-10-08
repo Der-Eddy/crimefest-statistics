@@ -54,6 +54,15 @@
                         YACSS got mobile support! Just visit the site with your mobile/tablet device!
                       </div>
                     </div>
+                    <div class="ui icon warning message" id="devMessage">
+                      <i class="warning icon"></i>
+                      <div class="content">
+                        <div class="header">
+                          Houston's Sixth Challenge
+                        </div>
+                        Houston's Sixth Challenge is currently not automatically tracked, I will fix that ASAP.
+                      </div>
+                    </div>
                     <div class="ui icon blue message" id="loadingMessage">
                       <i class="notched circle loading icon"></i>
                       <div class="content">
@@ -108,6 +117,38 @@
 
         <div class="ui two column centered stackable grid">
             <div class="five column centered row">
+                <div class="ui horizontal inverted divider">
+                  <p><i class="ticket icon"></i>Challenge 6</p>
+                </div>
+                <div class="column">
+                    <h3 class="ui center aligned header">Chains</h4>
+                    <div class="circle ChainsSixth"></div>
+                    <span id="ChainsSixthNumber">0</span> / 2,500
+                    <h4 class="ui center aligned header">I Am A Stone, I Do Not Move</h4>
+                    Complete 2,500 Watchdogs heists with your personal accuracy above 70% during the Road to Crimefest.
+                </div>
+                <div class="column">
+                  <h3 class="ui center aligned header">Clover</h4>
+                  <div class="circle CloverSixth"></div>
+                  <span id="CloverSixthNumber">0</span> / 80,000
+                  <h4 class="ui center aligned header">An Offer They Can't Refuse</h4>
+                  Convert 80,000 law enforcers to fight on your side using the Joker Skill during the Road to Crimefest.
+                </div>
+                <div class="column">
+                  <h3 class="ui center aligned header">Dallas</h4>
+                  <div class="circle DallasSixth"></div>
+                  <span id="DallasSixthNumber">0</span> / 250,000
+                  <h4 class="ui center aligned header">Buttshot!</h4>
+                  Kill 250,000 Shields with shotguns during the Road to Crimefest event.
+                </div>
+                <div class="column">
+                  <h3 class="ui center aligned header">Houston</h4>
+                  <div class="circle HoustonSixth"></div>
+                  <span id="HoustonSixthNumber">0</span> / 20
+                  <h4 class="ui center aligned header">OVERKILL Salutes You!</h4>
+                  Complete 20 Crimefest challenges during the Road to Crimefest event.
+                </div>
+
                 <div class="ui horizontal inverted divider">
                   <p><i class="ticket icon"></i>Challenge 5</p>
                 </div>
@@ -903,11 +944,132 @@
               ctx.restore();
             });
 
+            var ChainsSixth = $('.ChainsSixth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            ChainsSixth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
+            var DallasSixth = $('.DallasSixth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            DallasSixth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
+            var CloverSixth = $('.CloverSixth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            CloverSixth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
+            var HoustonSixth = $('.HoustonSixth.circle').circleProgress({
+                value: 0,
+                size: 150,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            HoustonSixth.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
             function refresh(){
               $("#warningMessage").fadeOut();
               $("#warningCurrentMessage").fadeOut();
               $.getJSON( "apiv2.php", function( data ) {
                   $("#loadingMessage").fadeOut();
+
+                  var ChainsSixth = parseInt(data.response.globalstats.crimefest_challenge_chains_6.total);
+                  $("#ChainsSixthNumber").text(ChainsSixth.toLocaleString());
+                  $('.ChainsSixth').circleProgress('value', ChainsSixth / 2500);
+                  var DallasSixth = parseInt(data.response.globalstats.crimefest_challenge_dallas_6.total);
+                  $("#DallasSixthNumber").text(DallasSixth.toLocaleString());
+                  $('.DallasSixth').circleProgress('value', DallasSixth / 250000);
+                  var CloverSixth = parseInt(data.response.globalstats.crimefest_challenge_clover_6.total);
+                  $("#CloverSixthNumber").text(CloverSixth.toLocaleString());
+                  $('.CloverSixth').circleProgress('value', CloverSixth / 80000);
+                  var HoustonSixth = 15;
+                  $("#HoustonSixthNumber").text(HoustonSixth.toLocaleString());
+                  $('.HoustonSixth').circleProgress('value', HoustonSixth / 20);
 
                   var ChainsFifth = parseInt(data.response.globalstats.crimefest_challenge_chains_5.total);
                   $("#ChainsFifthNumber").text(ChainsFifth.toLocaleString());
