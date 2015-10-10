@@ -15,9 +15,9 @@ Since the Steam Web API doesn't allow Cross Domain Calls, the Steam Statistics w
 Screenshoots
 -------------
 
-![Circle Progressbars](http://i.imgur.com/3Mbbh7L.png)
+![Circle Progressbars](http://i.imgur.com/Syivqyu.png)
 
-[Full Site Screenshot](http://i.imgur.com/Kj0SB3p.png)  
+[Full Site Screenshot](http://i.imgur.com/g9r7DXn.png)  
 [Mobile Site Screenshot](http://i.imgur.com/6WEsz5e.jpg)
 
 ToDo

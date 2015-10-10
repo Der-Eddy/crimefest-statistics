@@ -23,6 +23,7 @@
             .ui.statistic + .ui.statistic {margin: 0px 0px 0px 1px!important;}
             .ui.statistic {display: inline;}
             canvas {max-width: 100%;} .column:not(#left) {word-wrap: break-word;}
+            .ui.header .ui.label {margin-left: 1.5em!important;}
         </style>
     </head>
     <body>
@@ -33,7 +34,7 @@
                 <div class="column" id="left">
                     <div class="ui large violet message">
                       <div class="content">
-                        Refreshing in <span style="color: violet;" id="countdown">15</span> seconds.
+                        Refreshing in <span style="color: violet;" id="countdown">10</span> seconds.
                       </div>
                     </div>
                     <div class="ui icon warning message" id="devMessage">
@@ -45,26 +46,8 @@
                         This is a non-minified, non-stable and experimental site. Please visit the <a href="index.html">Main Site</a> if you aren't a developer.
                       </div>
                     </div>
-                    <div class="ui icon info message">
-                      <i class="info icon"></i>
-                      <div class="content">
-                        <div class="header">
-                          Mobile Support
-                        </div>
-                        YACSS got mobile support! Just visit the site with your mobile/tablet device!
-                      </div>
-                    </div>
-                    <div class="ui icon warning message" id="devMessage">
-                      <i class="warning icon"></i>
-                      <div class="content">
-                        <div class="header">
-                          Houston's Sixth Challenge
-                        </div>
-                        Houston's Sixth Challenge is currently not automatically tracked, I will fix that ASAP.
-                      </div>
-                    </div>
                     <div class="ui icon blue message" id="loadingMessage">
-                      <i class="notched circle loading icon"></i>
+                      <i class="spinner loading icon"></i>
                       <div class="content">
                         <div class="header">
                           Just one second
@@ -115,7 +98,7 @@
           }
         </script>
 
-        <div class="ui two column centered stackable grid">
+        <div class="ui two column centered stackable grid" id="grid">
             <div class="five column centered row">
                 <div class="ui horizontal inverted divider">
                   <p><i class="ticket icon"></i>Challenge 6</p>
@@ -145,7 +128,7 @@
                   <h3 class="ui center aligned header">Houston</h4>
                   <div class="circle HoustonSixth"></div>
                   <span id="HoustonSixthNumber">0</span> / 20
-                  <h4 class="ui center aligned header">OVERKILL Salutes You!</h4>
+                  <h4 class="ui center aligned header">OVERKILL Salutes You! <a class='ui tag green label'><i class='checkmark icon'></i>Done!</a></h4>
                   Complete 20 Crimefest challenges during the Road to Crimefest event.
                 </div>
 
@@ -747,7 +730,7 @@
                   fill = obj.arcFill;
 
               ctx.save();
-              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.font = s / 4.5 + "px sans-serif";
               ctx.textAlign = 'center';
               ctx.textBaseline = 'middle';
               ctx.fillStyle = fill;
@@ -1052,7 +1035,7 @@
               ctx.restore();
             });
 
-            function refresh(){
+            function refresh(doneTag = false){
               $("#warningMessage").fadeOut();
               $("#warningCurrentMessage").fadeOut();
               $.getJSON( "apiv2.php", function( data ) {
@@ -1067,9 +1050,6 @@
                   var CloverSixth = parseInt(data.response.globalstats.crimefest_challenge_clover_6.total);
                   $("#CloverSixthNumber").text(CloverSixth.toLocaleString());
                   $('.CloverSixth').circleProgress('value', CloverSixth / 80000);
-                  var HoustonSixth = 15;
-                  $("#HoustonSixthNumber").text(HoustonSixth.toLocaleString());
-                  $('.HoustonSixth').circleProgress('value', HoustonSixth / 20);
 
                   var ChainsFifth = parseInt(data.response.globalstats.crimefest_challenge_chains_5.total);
                   $("#ChainsFifthNumber").text(ChainsFifth.toLocaleString());
@@ -1132,7 +1112,20 @@
                   var HoustonFirst = parseInt(data.response.globalstats.crimefest_challenge_houston_1.total) + 48000;
                   $("#HoustonFirstNumber").text(HoustonFirst.toLocaleString());
                   $('.HoustonFirst').circleProgress('value', HoustonFirst / 120000);
-              }).error(function() { $("#loadingMessage").fadeOut(); $("#warningMessage").fadeIn(); });
+              }).error(function() { $("#loadingMessage").fadeOut(); $("#warningMessage").fadeIn(); })
+              .done(function() {
+                  if (doneTag === true){
+                    var doneChallenges = 0;
+                    $( ".circle" ).each(function( ) {
+                      if ($(this).circleProgress('value') >= 1){
+                        $(this).next().next().append("<a class='ui tag green label'><i class='checkmark icon'></i>Done!</a>");
+                        doneChallenges++;
+                      }
+                      $("#HoustonSixthNumber").text(doneChallenges.toLocaleString());
+                      $('.HoustonSixth').circleProgress('value', doneChallenges / 20);
+                    });
+                  }
+              });
 
               $.getJSON( "currentPlayer.json", function( data ) {
                   var currentPlayer = parseInt(data.response.player_count);
@@ -1150,9 +1143,9 @@
               }).error(function() { $("#loadingMessage").fadeOut();});
             }
 
-            refresh();
+            refresh(true);
 
-            var time = 15;
+            var time = 10;
             setInterval( function() {
         
                 time--;
@@ -1161,7 +1154,7 @@
                 
                 if (time === 0) {
                     
-                    time = 16;
+                    time = 11;
                     refresh();
                 }    
                 

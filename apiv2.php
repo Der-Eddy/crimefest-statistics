@@ -2,7 +2,7 @@
     //I hate the Steam API
     
     //This is for caching, since Steam will ban my server if they got too many requests from it
-    function get_content($file,$url,$seconds = 10,$fn = '',$fn_args = '') {
+    function get_content($file,$url,$seconds = 5,$fn = '',$fn_args = '') {
         
         $current_time = time(); $expire_time = $seconds; $file_time = filemtime($file);
         
