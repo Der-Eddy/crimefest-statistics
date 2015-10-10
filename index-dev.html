@@ -101,6 +101,17 @@
         <div class="ui two column centered stackable grid" id="grid">
             <div class="five column centered row">
                 <div class="ui horizontal inverted divider">
+                  <p><i class="ticket icon"></i>Final Challenge</p>
+                </div>
+                <div class="column">
+                    <h3 class="ui center aligned header">Offshore Payday doest count!</h4>
+                    <div class="circle Final"></div>
+                    <span id="FinalNumber">0</span> / 5,000,000
+                    <h4 class="ui center aligned header">Last Drop</h4>
+                    Get 5,000,000 Card Loot Drops during the Road to Crimefest
+                </div>
+
+                <div class="ui horizontal inverted divider">
                   <p><i class="ticket icon"></i>Challenge 6</p>
                 </div>
                 <div class="column">
@@ -1035,11 +1046,42 @@
               ctx.restore();
             });
 
+            var Final = $('.Final.circle').circleProgress({
+                value: 0,
+                size: 200,
+                startAngle: 1.5 * Math.PI,
+                thickness: 20,
+                reverse: true,
+                fill: {
+                    image: "img/circle-bg.jpg",
+                }
+            });
+
+            Final.on('circle-animation-progress', function(e, v, stepValue) {
+              var obj = $(this).data('circle-progress'),
+                  ctx = obj.ctx,
+                  s = obj.size,
+                  sv = (100 * stepValue).toFixed(),
+                  fill = obj.arcFill;
+
+              ctx.save();
+              ctx.font = s / 4.0 + "px sans-serif";
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle';
+              ctx.fillStyle = fill;
+              ctx.fillText(sv + '%', s / 2, s / 2);
+              ctx.restore();
+            });
+
             function refresh(doneTag){
               $("#warningMessage").fadeOut();
               $("#warningCurrentMessage").fadeOut();
               $.getJSON( "apiv2.php", function( data ) {
                   $("#loadingMessage").fadeOut();
+
+                  var Final = parseInt(data.response.globalstats.crimefest_challenge_final.total);
+                  $("#FinalNumber").text(Final.toLocaleString());
+                  $('.Final').circleProgress('value', Final / 5000000);
 
                   var ChainsSixth = parseInt(data.response.globalstats.crimefest_challenge_chains_6.total);
                   $("#ChainsSixthNumber").text(ChainsSixth.toLocaleString());
