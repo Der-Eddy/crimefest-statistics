@@ -1035,7 +1035,7 @@
               ctx.restore();
             });
 
-            function refresh(doneTag = false){
+            function refresh(doneTag){
               $("#warningMessage").fadeOut();
               $("#warningCurrentMessage").fadeOut();
               $.getJSON( "apiv2.php", function( data ) {
@@ -1155,7 +1155,7 @@
                 if (time === 0) {
                     
                     time = 11;
-                    refresh();
+                    refresh(false);
                 }    
                 
                 
