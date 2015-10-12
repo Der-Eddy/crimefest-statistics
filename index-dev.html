@@ -8,23 +8,10 @@
         <script src="js/jquery.min.js"></script>
         <script src="semantic-ui/semantic.min.js"></script>
         <script src="js/circle-progress.js"></script>
+        <script src="js/flipclock.min.js"></script>
+        <link rel="stylesheet" href="css/flipclock.min.css">
+        <link rel="stylesheet" href="css/main.min.css">
         <title>YACSS - Crimefest Statistics</title>
-        <style>
-            body {background-color: #270338; color: #ffffff; text-shadow: 0px 1px rgba(0, 0, 0, 0.2)}
-            h1.ui.center.header {margin-top: 2em; color: #ffffff; text-shadow: 0px 1px rgba(0, 0, 0, 0.2); font-weight: 300;}
-            h2.ui.center.header {margin-top: 2em; padding: 2em 0em; color: #ffffff; text-shadow: 0px 1px rgba(0, 0, 0, 0.2)}
-            h3.ui.center.header {color: #ffffff; text-shadow: 0px 1px rgba(0, 0, 0, 0.2)}
-            h4.ui.center.header {color: #ffffff; text-shadow: 0px 1px rgba(0, 0, 0, 0.2)}
-            .column:not(#left) {text-align: center!important;}
-            #footer{padding: 15px; margin-top: 15px; border-top: solid #6435C9 1px;};
-            p {color: #ffffff;}
-            addr {color: rgba(0, 0, 0, 0.87);}
-            .modal p {color: rgba(0, 0, 0, 0.87);}
-            .ui.statistic + .ui.statistic {margin: 0px 0px 0px 1px!important;}
-            .ui.statistic {display: inline;}
-            canvas {max-width: 100%;} .column:not(#left) {word-wrap: break-word;}
-            .ui.header .ui.label {margin-left: 1.5em!important;}
-        </style>
     </head>
     <body>
         <h1 class="ui center aligned header">Yet Another <a href="http://www.overkillsoftware.com/games/roadtocrimefest/" target="_blank">Crimefest</a> Statistics Site</h2>
@@ -47,7 +34,7 @@
                       </div>
                     </div>
                     <div class="ui icon blue message" id="loadingMessage">
-                      <i class="spinner loading icon"></i>
+                      <i class="refresh loading icon"></i>
                       <div class="content">
                         <div class="header">
                           Just one second
@@ -77,7 +64,7 @@
 
                 <div class="mobile only column" id="left">
                     <div class="ui icon info message">
-                      <i class="info icon"></i>
+                      <i class="mobile icon"></i>
                       <div class="content">
                         You are visiting the mobile site.
                       </div>
@@ -93,15 +80,24 @@
           var url = window.location.pathname;
           var filename = url.substring(url.lastIndexOf('/')+1);
           if (filename != "index-dev.html"){
-            console.log("You are visiting the developer site of YACSS");
             $("#devMessage").hide();
+          } else {
+            console.log("You are visiting the developer site of YACSS");
           }
         </script>
 
         <div class="ui two column centered stackable grid" id="grid">
             <div class="five column centered row">
                 <div class="ui horizontal inverted divider">
-                  <p><i class="ticket icon"></i>Final Challenge</p>
+                  <p><i class="wait icon"></i>Countdown to Crimefest</p>
+                </div>
+                <div class="six wide computer only column">
+                    <h3 class="ui center aligned header">Time until the 15th of October</h4>
+                    <div class="clock" style="margin:2em;"></div>
+                </div>
+
+                <div class="ui horizontal inverted divider">
+                  <p><i class="tag icon"></i>Final Challenge</p>
                 </div>
                 <div class="column">
                     <h3 class="ui center aligned header">Offshore Payday does count!</h4>
@@ -112,7 +108,7 @@
                 </div>
 
                 <div class="ui horizontal inverted divider">
-                  <p><i class="ticket icon"></i>Challenge 6</p>
+                  <p><i class="tags icon"></i>Challenge 6</p>
                 </div>
                 <div class="column">
                     <h3 class="ui center aligned header">Chains</h4>
@@ -144,7 +140,7 @@
                 </div>
 
                 <div class="ui horizontal inverted divider">
-                  <p><i class="ticket icon"></i>Challenge 5</p>
+                  <p><i class="tags icon"></i>Challenge 5</p>
                 </div>
                 <div class="column">
                     <h3 class="ui center aligned header">Chains</h4>
@@ -176,7 +172,7 @@
                 </div>
 
                 <div class="ui horizontal inverted divider">
-                  <p><i class="ticket icon"></i>Challenge 4</p>
+                  <p><i class="tags icon"></i>Challenge 4</p>
                 </div>
                 <div class="column">
                     <h3 class="ui center aligned header">Chains</h4>
@@ -208,7 +204,7 @@
                 </div>
 
                 <div class="ui horizontal inverted divider">
-                  <p><i class="ticket icon"></i>Challenge 3</p>
+                  <p><i class="tags icon"></i>Challenge 3</p>
                 </div>
                 <div class="column">
                     <h3 class="ui center aligned header">Chains</h4>
@@ -240,7 +236,7 @@
                 </div>
 
                 <div class="ui horizontal inverted divider">
-                  <p><i class="ticket icon"></i>Challenge 2</p>
+                  <p><i class="tags icon"></i>Challenge 2</p>
                 </div>
                 <div class="column">
                     <h3 class="ui center aligned header">Chains</h4>
@@ -272,7 +268,7 @@
                 </div>
 
                 <div class="ui horizontal inverted divider">
-                  <p><i class="ticket icon"></i>Challenge 1</p>
+                  <p><i class="tags icon"></i>Challenge 1</p>
                 </div>
                 <div class="column">
                     <h3 class="ui center aligned header">Chains</h4>
@@ -324,7 +320,8 @@
                 <div class="ui inverted link list">
                   <a href="http://semantic-ui.com/" class="item"><i class="css3 icon"></i> Semantic-UI</a>
                   <a href="https://github.com/kottenator/jquery-circle-progress" class="item"><i class="circle notched icon"></i> jQuery Circle Progress</a>
-                  <a href="http://jquery.com/" class="item"><i class="html5 icon"></i> jQuery</a>
+                  <a href="http://www.flipclockjs.com/" class="item"><i class="wait icon"></i> FlipClock.js</a>
+                  <a href="http://jquery.com/" class="item"><i class="code icon"></i> jQuery</a>
                   <a href="https://www.clever-cloud.com/en/" class="item"><i class="cloud icon"></i> Clever-Cloud</a>
                   <a href="https://www.cloudflare.com/" class="item"><i class="soundcloud icon"></i> Cloudflare</a>
                 </div>
@@ -398,6 +395,18 @@
         </div>
 
         <script>
+            var clock;
+
+                  $(document).ready(function() {
+                    var currentDate = new Date();
+                    var futureDate  = new Date("October 15, 2015 00:00:00");
+                    var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+                    clock = $('.clock').FlipClock(diff, {
+                      clockFace: 'DailyCounter',
+                      countdown: true
+                    });
+            });
+
             var ChainsFirst = $('.ChainsFirst.circle').circleProgress({
                 value: 0,
                 size: 150,
