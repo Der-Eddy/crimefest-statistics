@@ -33,6 +33,15 @@
                         This is a non-minified, non-stable and experimental site. Please visit the <a href="index.html">Main Site</a> if you aren't a developer.
                       </div>
                     </div>
+                    <div class="ui icon blue message">
+                      <i class="heart icon"></i>
+                      <div class="content">
+                        <div class="header">
+                          Crimefest starts!
+                        </div>
+                        We did it! We completed every challenge and now the Crimefest starts. We will see us hopefully next year again!
+                      </div>
+                    </div>
                     <div class="ui icon blue message" id="loadingMessage">
                       <i class="refresh loading icon"></i>
                       <div class="content">
@@ -92,7 +101,7 @@
                   <p><i class="wait icon"></i>Countdown to Crimefest</p>
                 </div>
                 <div class="six wide computer only column">
-                    <h3 class="ui center aligned header">Time until the 15th of October</h4>
+                    <h3 class="ui center aligned header">Time until the 24th of October (End of Crimefest)</h4>
                     <div class="clock" style="margin:2em;"></div>
                 </div>
 
@@ -399,7 +408,7 @@
 
                   $(document).ready(function() {
                     var currentDate = new Date();
-                    var futureDate  = new Date("October 15, 2015 00:00:00");
+                    var futureDate  = new Date("October 25, 2015 00:00:00");
                     var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
                     clock = $('.clock').FlipClock(diff, {
                       clockFace: 'DailyCounter',

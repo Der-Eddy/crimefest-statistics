@@ -4,6 +4,8 @@ YACSS - Yet Another Crimefest Statistics Site
 Displays the progression of the [PayDay2 Crimefest 2015 Challanges](http://www.overkillsoftware.com/games/roadtocrimefest/) in a cool looking site. The site will refresh itself every 10 seconds via AJAX Requests.  
 More informations available at the [Reddit Topic](https://www.reddit.com/r/paydaytheheist/comments/3net30/yet_another_crimefest_statistics_site_link_inside/).
 
+Since the Crimefest is ongoing, I will drop updates for this project. Hopefully see you next year again!
+
 
 
 
@@ -19,10 +21,6 @@ Screenshoots
 
 [Full Site Screenshot](http://i.imgur.com/lTmnufo.png)  
 [Mobile Site Screenshot](http://i.imgur.com/6WEsz5e.jpg)
-
-ToDo
--------------
-* Nothing at the moment
 
 
 License
